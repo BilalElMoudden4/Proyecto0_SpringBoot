@@ -1,10 +1,9 @@
 package com.example.demo.repository;
 
 import java.util.ArrayList;
-
-import javax.swing.text.html.HTMLDocument.Iterator;
-
+import java.util.Iterator; 
 import com.example.demo.bean.Libro;
+
 
 public class BaseDatos {
 	
@@ -30,6 +29,10 @@ public class BaseDatos {
 			libros.add(new Libro(18,"NOTICIA DE UN SECUESTRO","GABRIEL GARCIA GARCIA","ALFAGUARA","7/12/2006 0:00:00","FICCION"));
 	}
 
+	public void inserta(Libro libro) {
+		libros.add(libro);		
+	}
+	
 	public ArrayList<Libro> getLibros() {
 		return libros;
 	}
@@ -38,9 +41,6 @@ public class BaseDatos {
 		this.libros = libros;
 	}
 
-	public void inserta(Libro libro) {
-		libros.add(libro);		
-	}
 
 	public void borrar(int id) {
 		Iterator<Libro> it = libros.iterator();
@@ -51,6 +51,26 @@ public class BaseDatos {
 				break;
 			}
 		}
+	}
+	
+	public void modifica(Libro libro) {
+		Iterator <Libro> it = libros.iterator();
+		while(it.hasNext()) {
+			Libro li = it.next();
+			if (li.getId() ==  libro.getId()) {
+				li.setTitulo(libro.getTitulo());
+				li.setAutor(libro.getAutor());
+				li.setEditorial(libro.getEditorial());
+				li.setFecha(libro.getFecha());
+				li.setTematica(libro.getTematica());
+				break;
+			}
+		}
+	}
+
+	public Libro getLibro(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
